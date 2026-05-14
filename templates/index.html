@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>F_R_I_D_A_Y AI</title>
 
   <style>
@@ -20,12 +20,12 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      overflow:hidden;
+      color:white;
     }
 
     .container{
-      width:420px;
-      height:700px;
+      width:400px;
+      height:650px;
       background:#111827;
       border-radius:20px;
       overflow:hidden;
@@ -54,4 +54,123 @@
       gap:15px;
     }
 
+    .message{
+      padding:12px 15px;
+      border-radius:15px;
+      max-width:80%;
+      line-height:1.4;
+    }
+
+    .user{
+      background:#22c55e;
+      color:black;
+      align-self:flex-end;
+    }
+
+    .ai{
+      background:#1f2937;
+      align-self:flex-start;
+    }
+
+    .bottom{
+      display:flex;
+      padding:15px;
+      gap:10px;
+      border-top:1px solid #1f2937;
+    }
+
+    input{
+      flex:1;
+      padding:14px;
+      border:none;
+      outline:none;
+      border-radius:10px;
+      background:#1f2937;
+      color:white;
+    }
+
+    button{
+      padding:14px 18px;
+      border:none;
+      border-radius:10px;
+      background:#22c55e;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>F_R_I_D_A_Y</h1>
+  </div>
+
+  <div class="chat-box" id="chatBox">
+
+    <div class="message ai">
+      Hello! How may I help you today?
+    </div>
+
+  </div>
+
+  <div class="bottom">
+
+    <input 
+      type="text" 
+      id="userInput" 
+      placeholder="Type your message..."
+    >
+
+    <button onclick="sendMessage()">
+      Send
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+const chatBox = document.getElementById("chatBox");
+
+function addMessage(text, type){
+
+  const div = document.createElement("div");
+
+  div.classList.add("message");
+  div.classList.add(type);
+
+  div.innerText = text;
+
+  chatBox.appendChild(div);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function sendMessage(){
+
+  const input = document.getElementById("userInput");
+
+  const message = input.value.trim();
+
+  if(message === "") return;
+
+  addMessage(message, "user");
+
+  input.value = "";
+
+  setTimeout(()=>{
+
+    addMessage("AI response will come here", "ai");
+
+  },1000);
+}
+
+</script>
+
+</body>
 </html>
