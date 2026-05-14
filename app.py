@@ -1,36 +1,49 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 import requests
-import os
 
 app = Flask(__name__)
+CORS(app)
 
-# Your custom LLM URL
-CUSTOM_LLM_URL = os.getenv("CUSTOM_LLM_URL")
+AI_URL = "https://aicallingagent-production-b135.up.railway.app/chat"
 
-@app.route("/")
+
+@app.route('/')
 def home():
-    return {
-        "status": "running",
-        "message": "Custom LLM Proxy Running"
-    }
+    return render_template('index.html')
 
-@app.route("/chat", methods=["POST"])
+
+@app.route('/chat', methods=['POST'])
 def chat():
+
     try:
-        data = request.json
+
+        data = request.get_json()
+
+        user_message = data.get('message')
 
         response = requests.post(
-            CUSTOM_LLM_URL,
-            json=data,
-            headers={
-                "Content-Type": "application/json"
-            }
+            AI_URL,
+            json={
+                "prompt": user_message
+            },
+            timeout=120
         )
 
-        return jsonify(response.json())
+        ai_data = response.json()
+
+        ai_response = ai_data.get('response', str(ai_data))
+
+        return jsonify({
+            "response": ai_response
+        })
 
     except Exception as e:
-        return jsonify({"error": str(e)})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+        return jsonify({
+            "response": f"Server Error : {e}"
+        })
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
