@@ -20,7 +20,11 @@ def chat():
 
         data = request.get_json()
 
+        print("DATA :", data)
+
         user_message = data.get('message')
+
+        print("USER :", user_message)
 
         response = requests.post(
             AI_URL,
@@ -30,9 +34,15 @@ def chat():
             timeout=120
         )
 
+        print("STATUS :", response.status_code)
+
+        print("RAW :", response.text)
+
         ai_data = response.json()
 
         ai_response = ai_data.get('response', str(ai_data))
+
+        print("AI :", ai_response)
 
         return jsonify({
             "response": ai_response
@@ -40,10 +50,9 @@ def chat():
 
     except Exception as e:
 
+        print("ERROR :", e)
+
         return jsonify({
             "response": f"Server Error : {e}"
-        })
-
-
-if __name__ == '__main__':
+        })if __name__ == '__main__':
     app.run(debug=True)
