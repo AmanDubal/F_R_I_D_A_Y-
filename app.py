@@ -54,5 +54,6 @@ def chat():
 
         return jsonify({
             "response": f"Server Error : {e}"
-        })if __name__ == '__main__':
+        })
+if __name__ == '__main__':
     app.run(debug=True)
