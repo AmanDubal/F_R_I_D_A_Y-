@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-AI_URL = "https://aicallingagent-production-b135.up.railway.app/chat"
+AI_URL = "https://aicallingagent-production-1389.up.railway.app/chat"
 
 
 @app.route('/')
