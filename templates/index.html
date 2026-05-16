@@ -190,6 +190,7 @@ function avatarHTML(role) {
 
 function renderMessage(role, text, time) {
 
+
     const isUser = role === 'user';
 
     const bubbleClasses = isUser
@@ -198,22 +199,39 @@ function renderMessage(role, text, time) {
 
     const el = document.createElement('div');
 
-    el.className = `flex items-end gap-2 mb-4 ${isUser ? 'flex-row-reverse' : ''}`;
+    el.className = `flex items-end gap-2 mb-4 ${isUser ? 'justify-end' : 'justify-start'}`;
 
     el.innerHTML = `
-        ${avatarHTML(role)}
 
-        <div class="max-w-[78%]">
+        ${!isUser ? avatarHTML('bot') : ''}
 
-            <div class="chat-text rounded-2xl px-4 py-3 text-sm shadow-sm ${bubbleClasses}">
+        <div class="flex flex-col ${isUser ? 'items-end' : 'items-start'}">
+
+            <div class="
+                inline-block
+                max-w-[320px]
+                sm:max-w-[450px]
+                break-words
+                whitespace-pre-wrap
+                rounded-2xl
+                px-4
+                py-3
+                text-sm
+                leading-relaxed
+                shadow-sm
+                ${bubbleClasses}
+            ">
                 ${escapeHtml(text)}
             </div>
 
-            <span class="mt-1 block px-1 text-[10px] text-slate-400">
+            <span class="mt-1 px-1 text-[10px] text-slate-400">
                 ${time}
             </span>
 
         </div>
+
+        ${isUser ? avatarHTML('user') : ''}
+
     `;
 
     chatBox.appendChild(el);
