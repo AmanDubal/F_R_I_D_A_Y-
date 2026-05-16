@@ -182,32 +182,19 @@ function renderMessage(role, text, time){
   scroll();
 }
 
-function showTyping() {
-
-    const el = document.createElement('div');
-
-    el.id = 'typingIndicator';
-
-    el.className = 'flex items-end gap-2 mb-4';
-
-    el.innerHTML = `
-
-        ${avatarHTML('bot')}
-
-        <div class="flex items-center gap-1.5 rounded-2xl rounded-bl-sm border border-sky-100 bg-white px-4 py-3 shadow-sm">
-
-            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
-
-            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
-
-            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
-
-        </div>
-    `;
-
-    chatBox.appendChild(el);
-
-    scrollToBottom();
+function showTyping(){
+  const el = document.createElement('div');
+  el.id = 'typingIndicator';
+  el.className = 'msg-row';
+  el.innerHTML = `
+    <div class="avatar-bot">AI</div>
+    <div class="bubble-bot" style="padding:0.75rem 1rem;display:flex;flex-direction:row;align-items:center;gap:5px;">
+      <span class="typing-dot" style="display:block;width:8px;height:8px;border-radius:50%;background:#38bdf8;flex-shrink:0;"></span>
+      <span class="typing-dot" style="display:block;width:8px;height:8px;border-radius:50%;background:#38bdf8;flex-shrink:0;"></span>
+      <span class="typing-dot" style="display:block;width:8px;height:8px;border-radius:50%;background:#38bdf8;flex-shrink:0;"></span>
+    </div>`;
+  chatBox.appendChild(el);
+  scroll();
 }
 function hideTyping(){ const el=document.getElementById('typingIndicator'); if(el) el.remove(); }
 
