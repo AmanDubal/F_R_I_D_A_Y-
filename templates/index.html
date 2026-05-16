@@ -74,7 +74,7 @@
         </div>
         <div>
           <h1 class="text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
-            Nimbus <span class="text-sky-500">Assistant</span>
+            Instantly <span class="text-sky-500">Assistant</span>
           </h1>
           <p class="flex items-center gap-1.5 text-xs text-slate-500 sm:text-sm">
             <span class="relative flex h-2 w-2">
@@ -132,7 +132,7 @@
     </main>
 
     <footer class="mt-4 text-center text-xs text-slate-500 animate-fade-in-up">
-      Built with 💙 · Nimbus © <span id="year"></span>
+      Built with 💙 · Instantly © <span id="year"></span>
     </footer>
   </div>
 
@@ -196,52 +196,55 @@ function renderMessage(role, text, time) {
     wrapper.className = `
         flex
         ${isUser ? 'justify-end' : 'justify-start'}
-        mb-5
+        mb-6
     `;
 
     wrapper.innerHTML = `
 
         <div class="
             flex
-            items-end
-            gap-2
-            ${isUser ? 'flex-row-reverse' : ''}
+            ${isUser ? 'flex-row-reverse' : 'flex-row'}
+            items-start
+            gap-3
+            max-w-full
         ">
 
             <!-- Avatar -->
             <div class="
                 flex
-                h-9
-                w-9
+                h-10
+                w-10
                 flex-shrink-0
                 items-center
                 justify-center
                 rounded-full
-                ${isUser
-                    ? 'bg-slate-800 text-white'
-                    : 'bg-gradient-to-br from-sky-400 to-blue-600 text-white'}
                 text-sm
                 font-bold
+                text-white
                 shadow-md
+                ${isUser
+                    ? 'bg-slate-800'
+                    : 'bg-gradient-to-br from-sky-400 to-blue-600'}
             ">
                 ${isUser ? 'You' : 'AI'}
             </div>
 
-            <!-- Message -->
+            <!-- Content -->
             <div class="
                 flex
                 flex-col
                 ${isUser ? 'items-end' : 'items-start'}
             ">
 
+                <!-- Bubble -->
                 <div class="
                     max-w-[280px]
-                    sm:max-w-[420px]
+                    sm:max-w-[450px]
                     break-words
                     whitespace-pre-wrap
                     rounded-2xl
-                    px-4
-                    py-3
+                    px-5
+                    py-4
                     text-sm
                     leading-relaxed
                     shadow-sm
@@ -252,10 +255,10 @@ function renderMessage(role, text, time) {
                     ${escapeHtml(text)}
                 </div>
 
+                <!-- Time -->
                 <span class="
                     mt-1
-                    px-1
-                    text-[10px]
+                    text-[11px]
                     text-slate-400
                 ">
                     ${time}
