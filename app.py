@@ -46,7 +46,7 @@ COMPANY INFORMATION:
 """
 
         response = client.chat.completions.create(
-            model="openai/gpt-4o-mini",
+            model="openai/gpt-4-turbo",
             messages=[
                 {
                     "role": "system",
