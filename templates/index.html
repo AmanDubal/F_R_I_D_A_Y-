@@ -12,10 +12,6 @@
     0% { opacity: 0; transform: translateY(12px); }
     100% { opacity: 1; transform: translateY(0); }
   }
-  @keyframes pop {
-    0% { opacity: 0; transform: scale(0.85); }
-    100% { opacity: 1; transform: scale(1); }
-  }
   @keyframes blob {
     0%, 100% { transform: translate(0, 0) scale(1); }
     33% { transform: translate(40px, -30px) scale(1.15); }
@@ -31,33 +27,73 @@
   }
 
   .animate-fade-in-up { animation: fadeInUp 0.45s ease-out both; }
-  .animate-pop { animation: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
   .animate-blob { animation: blob 18s ease-in-out infinite; }
   .animate-float { animation: float 6s ease-in-out infinite; }
   .typing-dot { animation: typingBounce 1.3s infinite ease-in-out; }
   .typing-dot:nth-child(2) { animation-delay: 0.15s; }
   .typing-dot:nth-child(3) { animation-delay: 0.3s; }
 
-  /* Pretty scrollbar */
   .nice-scroll::-webkit-scrollbar { width: 8px; }
   .nice-scroll::-webkit-scrollbar-track { background: transparent; }
-  .nice-scroll::-webkit-scrollbar-thumb {
-    background: rgba(56, 189, 248, 0.35);
-    border-radius: 999px;
-  }
-  .nice-scroll::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.6); }
+  .nice-scroll::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.35); border-radius: 999px; }
+  .nice-scroll::-webkit-scrollbar-thumb:hover { background: rgba(56,189,248,0.6); }
 
-  /* Keep text crisp on gradients */
-  .chat-text { white-space: pre-wrap; word-wrap: break-word; }
+  /* ── Bubble styles (plain CSS so Tailwind purge can't touch them) ── */
+  .bubble-bot {
+    background: #ffffff;
+    border: 1px solid #e0f2fe;
+    color: #1e293b;
+    border-radius: 1rem 1rem 1rem 0.25rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: min(340px, 75vw);
+    white-space: pre-wrap;
+    word-break: break-word;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .bubble-user {
+    background: linear-gradient(135deg, #38bdf8, #2563eb);
+    color: #ffffff;
+    border-radius: 1rem 1rem 0.25rem 1rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: min(340px, 75vw);
+    white-space: pre-wrap;
+    word-break: break-word;
+    box-shadow: 0 2px 8px rgba(56,189,248,0.35);
+  }
+  .avatar-bot {
+    width: 2.5rem; height: 2.5rem; flex-shrink: 0;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #38bdf8, #2563eb);
+    color: #fff; font-size: 0.75rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(56,189,248,0.4);
+  }
+  .avatar-user {
+    width: 2.5rem; height: 2.5rem; flex-shrink: 0;
+    border-radius: 9999px;
+    background: #1e293b;
+    color: #fff; font-size: 0.75rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  .msg-row { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .msg-row.user { flex-direction: row-reverse; }
+  .msg-col { display: flex; flex-direction: column; }
+  .msg-col.user { align-items: flex-end; }
+  .msg-time { font-size: 11px; color: #94a3b8; margin-top: 0.25rem; }
 </style>
 </head>
 <body class="relative min-h-screen overflow-hidden bg-gradient-to-br from-sky-100 via-blue-50 to-white text-slate-800">
 
-  <!-- Animated background blobs -->
+  <!-- Background blobs -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
     <div class="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-sky-300/40 blur-3xl animate-blob"></div>
-    <div class="absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-blue-300/40 blur-3xl animate-blob" style="animation-delay: 4s;"></div>
-    <div class="absolute -bottom-32 left-1/3 h-[28rem] w-[28rem] rounded-full bg-cyan-200/50 blur-3xl animate-blob" style="animation-delay: 8s;"></div>
+    <div class="absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-blue-300/40 blur-3xl animate-blob" style="animation-delay:4s"></div>
+    <div class="absolute -bottom-32 left-1/3 h-[28rem] w-[28rem] rounded-full bg-cyan-200/50 blur-3xl animate-blob" style="animation-delay:8s"></div>
   </div>
 
   <div class="relative mx-auto flex min-h-screen max-w-4xl flex-col px-4 py-6 sm:px-6 sm:py-10">
@@ -68,8 +104,7 @@
         <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 shadow-lg shadow-sky-300/50 animate-float">
           <svg viewBox="0 0 24 24" fill="none" class="h-6 w-6 text-white" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 0 0 4 12a5 5 0 0 0 1 9.9" />
-            <path d="M12 13v8" />
-            <path d="M9 18l3-3 3 3" />
+            <path d="M12 13v8" /><path d="M9 18l3-3 3 3" />
           </svg>
         </div>
         <div>
@@ -85,7 +120,7 @@
           </p>
         </div>
       </div>
-      <button id="newChatBtn" class="rounded-full border border-sky-200 bg-white/70 px-3 py-1.5 text-xs font-medium text-sky-700 backdrop-blur transition hover:bg-white hover:shadow-md sm:text-sm" title="Clear chat">
+      <button id="newChatBtn" class="rounded-full border border-sky-200 bg-white/70 px-3 py-1.5 text-xs font-medium text-sky-700 backdrop-blur transition hover:bg-white hover:shadow-md sm:text-sm">
         ↻ New chat
       </button>
     </header>
@@ -93,40 +128,26 @@
     <!-- Chat card -->
     <main class="flex flex-1 flex-col overflow-hidden rounded-3xl border border-white/60 bg-white/70 shadow-2xl shadow-sky-200/60 backdrop-blur-xl animate-fade-in-up">
 
-      <!-- Messages -->
-      <div id="chatBox" class="nice-scroll flex-1 space-y-4 overflow-y-auto px-4 py-6 sm:px-6" style="min-height: 55vh; max-height: 65vh;">
-        <!-- Welcome message injected by JS -->
-      </div>
+      <div id="chatBox" class="nice-scroll flex-1 overflow-y-auto px-4 py-6 sm:px-6" style="min-height:55vh; max-height:65vh;"></div>
 
       <!-- Input -->
       <form id="chatForm" class="border-t border-sky-100/80 bg-white/80 p-3 backdrop-blur sm:p-4">
         <div class="flex items-center gap-2 rounded-2xl border border-sky-200 bg-white px-3 py-2 shadow-inner shadow-sky-50 transition focus-within:border-sky-400 focus-within:ring-4 focus-within:ring-sky-100">
           <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5 flex-shrink-0 text-sky-400" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-            <path d="M12 19v3" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" /><path d="M12 19v3" />
           </svg>
-          <input
-            id="userInput"
-            type="text"
-            autocomplete="off"
-            placeholder="Ask about the company..."
-            class="flex-1 bg-transparent px-1 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none sm:text-base"
-          />
-          <button
-            id="sendBtn"
-            type="submit"
-            class="group relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg shadow-sky-300/50 transition hover:shadow-sky-400/60 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none sm:h-11 sm:w-11"
-            aria-label="Send message"
-          >
+          <input id="userInput" type="text" autocomplete="off" placeholder="Ask about the company..."
+            class="flex-1 bg-transparent px-1 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none sm:text-base" />
+          <button id="sendBtn" type="submit"
+            class="group flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg shadow-sky-300/50 transition hover:shadow-sky-400/60 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-11 sm:w-11">
             <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5 transition group-hover:translate-x-0.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 2L11 13" />
-              <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+              <path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4 20-7z" />
             </svg>
           </button>
         </div>
         <p class="mt-2 px-2 text-center text-[11px] text-slate-400 sm:text-xs">
-          Press <kbd class="rounded border border-sky-200 bg-sky-50 px-1.5 py-0.5 font-mono text-sky-600">Enter</kbd> to send · Nimbus AI may produce inaccurate info.
+          Press <kbd class="rounded border border-sky-200 bg-sky-50 px-1.5 py-0.5 font-mono text-sky-600">Enter</kbd> to send · AI may produce inaccurate info.
         </p>
       </form>
     </main>
@@ -137,268 +158,68 @@
   </div>
 
 <script>
-
-const chatBox = document.getElementById('chatBox');
+const chatBox   = document.getElementById('chatBox');
 const userInput = document.getElementById('userInput');
-const chatForm = document.getElementById('chatForm');
-const sendBtn = document.getElementById('sendBtn');
-const newChatBtn = document.getElementById('newChatBtn');
-
+const chatForm  = document.getElementById('chatForm');
+const newChatBtn= document.getElementById('newChatBtn');
 document.getElementById('year').textContent = new Date().getFullYear();
 
-function formatTime(d) {
-    return d.toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit'
-    });
+function fmt(d){ return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
+function esc(s){ return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function scroll(){ chatBox.scrollTo({top:chatBox.scrollHeight,behavior:'smooth'}); }
+
+function renderMessage(role, text, time){
+  const isUser = role === 'user';
+  const row = document.createElement('div');
+  row.className = 'msg-row' + (isUser ? ' user' : '');
+  row.innerHTML = `
+    <div class="${isUser ? 'avatar-user' : 'avatar-bot'}">${isUser ? 'You' : 'AI'}</div>
+    <div class="msg-col${isUser ? ' user' : ''}">
+      <div class="${isUser ? 'bubble-user' : 'bubble-bot'}">${esc(text)}</div>
+      <span class="msg-time">${time}</span>
+    </div>`;
+  chatBox.appendChild(row);
+  scroll();
 }
 
-function escapeHtml(str) {
-    return str.replace(/[&<>"']/g, c => ({
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#39;'
-    }[c]));
+function showTyping(){
+  const el = document.createElement('div');
+  el.id = 'typingIndicator';
+  el.className = 'msg-row';
+  el.innerHTML = `
+    <div class="avatar-bot">AI</div>
+    <div class="bubble-bot" style="padding:0.75rem 1rem;">
+      <span class="typing-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#38bdf8;margin:0 2px"></span>
+      <span class="typing-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#38bdf8;margin:0 2px"></span>
+      <span class="typing-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#38bdf8;margin:0 2px"></span>
+    </div>`;
+  chatBox.appendChild(el);
+  scroll();
+}
+function hideTyping(){ const el=document.getElementById('typingIndicator'); if(el) el.remove(); }
+
+async function send(text){
+  const trimmed = text.trim();
+  if(!trimmed) return;
+  renderMessage('user', trimmed, fmt(new Date()));
+  userInput.value = '';
+  showTyping();
+  try {
+    const res  = await fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:trimmed})});
+    const data = await res.json();
+    hideTyping();
+    renderMessage('bot', data.response || ('ERROR: '+data.error), fmt(new Date()));
+  } catch(e){
+    hideTyping();
+    renderMessage('bot','Failed to connect to server.', fmt(new Date()));
+  }
 }
 
-function scrollToBottom() {
-    chatBox.scrollTo({
-        top: chatBox.scrollHeight,
-        behavior: 'smooth'
-    });
-}
-
-function avatarHTML(role) {
-
-    if(role === 'user') {
-
-        return `
-        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">
-            You
-        </div>
-        `;
-    }
-
-    return `
-    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-blue-600 text-white">
-        AI
-    </div>
-    `;
-}
-
-function renderMessage(role, text, time) {
-    const isUser = role === 'user';
-
-    const wrapper = document.createElement('div');
-
-    wrapper.className = `
-        flex
-        ${isUser ? 'justify-end' : 'justify-start'}
-        mb-6
-    `;
-
-    wrapper.innerHTML = `
-
-        <div class="
-            flex
-            ${isUser ? 'flex-row-reverse' : 'flex-row'}
-            items-start
-            gap-3
-            max-w-full
-        ">
-
-            <!-- Avatar -->
-            <div class="
-                flex
-                h-10
-                w-10
-                flex-shrink-0
-                items-center
-                justify-center
-                rounded-full
-                text-sm
-                font-bold
-                text-white
-                shadow-md
-                ${isUser
-                    ? 'bg-slate-800'
-                    : 'bg-gradient-to-br from-sky-400 to-blue-600'}
-            ">
-                ${isUser ? 'You' : 'AI'}
-            </div>
-
-            <!-- Content -->
-            <div class="
-                flex
-                flex-col
-                ${isUser ? 'items-end' : 'items-start'}
-            ">
-
-                <!-- Bubble -->
-                <div class="
-                    max-w-[280px]
-                    sm:max-w-[450px]
-                    break-words
-                    whitespace-pre-wrap
-                    rounded-2xl
-                    px-5
-                    py-4
-                    text-sm
-                    leading-relaxed
-                    shadow-sm
-                    ${isUser
-                        ? 'rounded-br-sm bg-gradient-to-br from-sky-500 to-blue-600 text-white'
-                        : 'rounded-bl-sm border border-sky-100 bg-white text-slate-800'}
-                ">
-                    ${escapeHtml(text)}
-                </div>
-
-                <!-- Time -->
-                <span class="
-                    mt-1
-                    text-[11px]
-                    text-slate-400
-                ">
-                    ${time}
-                </span>
-
-            </div>
-
-        </div>
-    `;
-
-    chatBox.appendChild(wrapper);
-
-    scrollToBottom();
-}
-
-function showTyping() {
-
-    const el = document.createElement('div');
-
-    el.id = 'typingIndicator';
-
-    el.className = 'flex items-end gap-2 mb-4';
-
-    el.innerHTML = `
-
-        ${avatarHTML('bot')}
-
-        <div class="flex items-center gap-1.5 rounded-2xl rounded-bl-sm border border-sky-100 bg-white px-4 py-3 shadow-sm">
-
-            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
-
-            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
-
-            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
-
-        </div>
-    `;
-
-    chatBox.appendChild(el);
-
-    scrollToBottom();
-}
-
-function hideTyping() {
-
-    const el = document.getElementById('typingIndicator');
-
-    if(el) el.remove();
-}
-
-async function send(text) {
-
-    const trimmed = text.trim();
-
-    if(!trimmed) return;
-
-    renderMessage('user', trimmed, formatTime(new Date()));
-
-    userInput.value = '';
-
-    showTyping();
-
-    try {
-
-        const response = await fetch('/chat', {
-
-            method: 'POST',
-
-            headers: {
-                'Content-Type': 'application/json'
-            },
-
-            body: JSON.stringify({
-                message: trimmed
-            })
-        });
-
-        const data = await response.json();
-
-        hideTyping();
-
-        if(data.response) {
-
-            renderMessage(
-                'bot',
-                data.response,
-                formatTime(new Date())
-            );
-
-        } else {
-
-            renderMessage(
-                'bot',
-                'ERROR: ' + data.error,
-                formatTime(new Date())
-            );
-        }
-
-    } catch(error) {
-
-        hideTyping();
-
-        renderMessage(
-            'bot',
-            'Failed to connect to server.',
-            formatTime(new Date())
-        );
-    }
-}
-
-
-// FORM SUBMIT
-chatForm.addEventListener('submit', (e) => {
-
-    e.preventDefault();
-
-    send(userInput.value);
-});
-
-
-// CLEAR CHAT
-newChatBtn.addEventListener('click', () => {
-
-    chatBox.innerHTML = '';
-
-    renderMessage(
-        'bot',
-        'New conversation started.',
-        formatTime(new Date())
-    );
-});
-
-
-// INITIAL MESSAGE
-renderMessage(
-    'bot',
-    'Ask anything about the company.',
-    formatTime(new Date())
-);
-
+chatForm.addEventListener('submit', e=>{ e.preventDefault(); send(userInput.value); });
+newChatBtn.addEventListener('click', ()=>{ chatBox.innerHTML=''; renderMessage('bot','New conversation started.',fmt(new Date())); });
+
+// Welcome
+renderMessage('bot','Ask anything about the company.', fmt(new Date()));
 </script>
 </body>
 </html>
