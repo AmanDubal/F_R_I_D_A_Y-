@@ -6,18 +6,18 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# GET API KEY FROM ENVIRONMENT
+# ENV VARIABLE
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 
-# CHECK IF API KEY EXISTS
-if not OPENROUTER_API_KEY:
-    raise ValueError("OPENROUTER_API_KEY is missing!")
-
-# CREATE CLIENT
+# OPENROUTER CLIENT
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=OPENROUTER_API_KEY
 )
+
+# LOAD COMPANY DATA
+with open("company_data.txt", "r", encoding="utf-8") as file:
+    company_context = file.read()
 
 @app.route("/")
 def home():
@@ -32,15 +32,32 @@ def chat():
 
         user_message = data.get("message")
 
+        # CONTEXT PROMPT
+        system_prompt = f"""
+You are the official AI assistant of the company.
+
+Answer ONLY based on the company information below.
+
+If information is unavailable, politely say:
+"I currently don't have that information."
+
+COMPANY INFORMATION:
+{company_context}
+"""
+
         response = client.chat.completions.create(
-            model="gpt-4-turbo",
+            model="openai/gpt-4o-mini",
             messages=[
+                {
+                    "role": "system",
+                    "content": system_prompt
+                },
                 {
                     "role": "user",
                     "content": user_message
                 }
             ],
-            max_tokens=150
+            max_tokens=300
         )
 
         ai_response = response.choices[0].message.content
