@@ -1,152 +1,172 @@
-COMPANY OVERVIEW
-Instantly.ai is a leading sales engagement and lead
-intelligence platform founded in 2021. Built for
-businesses of all sizes — from solopreneurs to global
-agencies — Instantly's mission is to be the simplest
-tool on the market to help people make money with
-cold email outreach.
+INSTANTLLY CARDS — COMPLETE COMPANY INFORMATION
+India's #1 Business Growth Platform
+Website: https://instantlly.com
+Email: info@instantlycards.com
+Phone: +91 9867477227
+Location: 100+ Cities across India
+App: Available on Google Play Store
 
-With over 35,000 customers worldwide and $20M in
-revenue, Instantly has grown into one of the most
-trusted names in B2B sales automation — all without
-any outside venture capital funding.
 
-WHAT INSTANTLY.AI DOES
-Instantly.ai helps businesses turn leads into clients
-by combining four core capabilities in one platform:
+ABOUT THE COMPANY
 
-- Automated Outreach
-  Create and launch personalized cold email campaigns
-  in minutes. AI crafts and personalizes messages at
-  scale, while smart workflows automatically route,
-  tag, and trigger follow-ups based on lead behavior.
+Instantlly Cards is India's leading digital business card and business growth platform. The platform is built for local businesses, freelancers, startups, and professionals who want to get more real customers — not just social media likes. It replaces traditional paper visiting cards with dynamic digital profiles and combines them with a full suite of local marketing tools.
 
-- B2B Lead Database
-  Access a database of 450M+ verified contacts.
-  Filter by job title, company size, industry,
-  tech stack, location, and more to find the right
-  prospects fast.
+The platform currently serves 50,000+ users across 100+ cities in India, holds a 4.8-star rating, and positions itself as the Global Business Identity Platform — helping businesses create digital cards, connect with clients through chat and calls, post ads, and grow both locally and worldwide.
 
-- Email Deliverability Tools
-  Built-in email warm-up, inbox placement testing,
-  and a deliverability network ensure your messages
-  land in primary inboxes — not spam folders.
+Tagline: "Get more real customers, not just likes."
 
-- AI-Powered CRM
-  Track opportunities, manage pipelines, automate
-  tasks, and get AI-driven insights — all within
-  the same platform. Native integrations with
-  HubSpot, Salesforce, and Pipedrive are available.
 
-KEY FEATURES
-- AI Sales Agents & Reply Agents
-- Unibox — centralized inbox for all email accounts
-- Website Visitor Identification
-- Campaign analytics (Opportunities, Pipeline,
-  Conversions, Revenue)
-- Unlimited email sending accounts
-- Multi-channel outreach (Email, Calls, SMS)
-- API access & Zapier integrations
-- Instantly Academy for learning & community
+WHAT THE PLATFORM DOES
 
-WHO IT'S FOR
-Instantly.ai serves a wide range of users including:
-- Startups and founders doing founder-led sales
-- Sales teams and SDRs scaling outreach
-- Marketing agencies managing multiple clients
-- Freelancers and solopreneurs growing their pipeline
+Instantlly Cards helps businesses and professionals in three core ways:
 
-COMPANY FACTS
-- Founded     : 2021
-- CEO/Founder : Nils Schneider
-- Employees   : ~15
-- Revenue     : $20M (2024)
-- Funding     : Bootstrapped (no outside investment)
-- Customers   : 35,000+
-- Headquarters: Sheridan, Wyoming, USA
+1. Get Discovered — through digital cards, a business directory, and top search rankings
+2. Run Promotions — through offers, vouchers, classified ads, and event listings
+3. Convert Leads — through in-app chat, direct call buttons, CRM, and lead management tools
 
-WEBSITE & CONTACT
-Website  : https://instantly.ai
-Support  : https://support.instantly.ai
-Community: Facebook Group & Slack Community
-Academy  : https://instantly.ai/academy
 
-PRIVACY POLICY
-Instantly.ai (operated by Foo Monk, LLC) collects and processes personal data
-to provide its data marketing and sales engagement services.
+FEATURES
 
-Data collected includes: full name, email, job title, company, professional
-history, phone number, postal address, IP address, cookie/device identifiers,
-email interaction data, demographic info, and consumer behavioral data.
+Digital Visiting Cards
+Users can create unlimited digital business cards instantly with no design skills required. Cards include clickable links, social media profiles, maps, portfolio items, photos, and a direct call and chat button. Cards can be shared via QR code, WhatsApp, or a link, and can be updated anytime without reprinting. The platform provides real-time visit and share analytics so users know who is viewing their card and when. Multiple businesses can be managed from a single account.
 
-Data sources: third-party data compilers, publicly available websites,
-government agencies, and Instantly's customers and partners.
+In-App Chat and Communication
+Instantlly Cards has a built-in chat system that lets clients message business owners directly from their digital card. Users can also receive calls from their card without sharing personal numbers.
 
-Data is used for: B2B marketing and outreach services, audience segmentation,
-email retargeting, campaign performance measurement, email validation, and
-internal product development.
+Business Directory
+All users get listed in a searchable business directory covering 100+ cities in India. Higher-tier plan holders get premium, elite, VIP, platinum, or diamond directory placements for greater visibility. Listings appear in top search rankings within the platform.
 
-Data is shared with: Instantly's customers (businesses, agencies, non-profits,
-recruiters), service providers, business and data partners, and law enforcement
-when legally required.
+Classified Ads
+Users can post and browse classified ads within the platform to advertise services and discover business opportunities. Ads can be promoted using advertising credits for higher placement and visibility.
 
-Privacy contact: privacy@instantly.ai
-Full policy: https://instantly.ai/privacy
+Events
+Businesses can create, host, and promote events directly through the platform. Events can be sponsored and highlighted using advertising credits. Unlimited event hosting is included in all plans.
 
-DATA OPT-OUT & CONSUMER RIGHTS
-Users have the right to access, correct, or delete their personal data, and to
-opt out of the sale or sharing of their data.
+Offers and Vouchers
+Businesses can run promotional offers and voucher campaigns to attract new customers and reward existing ones. Voucher promotions are powered through the credit system.
 
-Opt-out options:
-- Online : app.instantly.ai/privacy/opt-out
-- Phone  : 1-866-467-8688 (Service Code 1974#)
-- GPC signal supported on all browsers
+Analytics
+All plans include premium analytics covering card visits, shares, ad performance, and campaign results. Users get real-time data on who is engaging with their business profile.
 
-Opt-out requests processed within 1 business day. Data removal from active
-marketing databases takes up to 15 business days.
 
-CALIFORNIA PRIVACY RIGHTS (CCPA)
-California residents have rights to know, access, delete, and opt out of the
-sale of their data. Instantly does NOT knowingly collect or sell data of minors
-under 16 years of age.
+ADVERTISING CREDITS SYSTEM
 
-GDPR (EU & UK RESIDENTS)
-Instantly complies with GDPR for EU and UK residents.
-EU Representative: EDPO, Avenue Huart Hamoir 71, 1030 Brussels, Belgium
-UK Representative: EDPO UK Ltd, Unit 33, Waterside, 44-48 Wharf Road, London
+Instantlly Cards runs on a credit-based advertising model. Credits are the digital currency of the platform used to power all paid promotions.
 
-SECURITY
-Instantly uses firewall protections, data encryption in transit and at rest,
-hashing and truncation of sensitive data, and strict access controls.
+How it works:
+1 Credit equals 1 Rupee in advertising value. Credits are purchased through one-time investment plans and never expire. Users can spend credits on featured business listings, promoted classified ads, event sponsorship and highlights, banner advertisements, top search rankings, and voucher promotions.
 
-TERMS OF SERVICE
-Users must comply with anti-spam laws (CAN-SPAM, GDPR, CASL).
-Full Terms: https://instantly.ai/terms
+The key benefit is that users receive far more credits than the amount they invest. For example, investing Rs 15,000 gives Rs 1,00,000 worth of advertising credits — a 6 to 7 times return on investment. The difference between what is paid and the credits received is described by the company as a marketing commission that the user can use to grow their business.
 
-PRODUCTS
-1. Outreach         - instantly.ai/outreach
-2. AI Sales Agent   - instantly.ai/ai-agents/sales-agent
-3. AI Reply Agent   - instantly.ai/ai-agents/reply-agent
-4. Lead Database    - instantly.ai/b2b-lead-finder
-5. Email Verification - instantly.ai/email-verification
-6. CRM              - instantly.ai/crm
-7. Email Warmup     - instantly.ai/email-warmup
-8. Inbox Placement  - instantly.ai/inbox-placement
-9. Website Visitors - instantly.ai/website-visitors
-10. Email Accounts  - instantly.ai/email-accounts
-11. Copilot (AI)    - instantly.ai/copilot
-12. Automations     - instantly.ai/ai-agents/automations
-13. Airmail         - instantly.ai/airmail
-14. Unibox          - Centralized multi-inbox management
 
-PRICING
-14-day free trial available (no credit card needed).
-Flat-fee subscription plans. Details: instantly.ai/pricing
+PRICING PLANS
 
-HR NOTICE
-We're sorry, we're unable to provide HR-related information through this
-channel at this time. For any HR queries such as leave policies, office
-timings, WFH policy, payroll, or anything else related to employment, please
-reach out directly to our HR team — they'll be happy to help you.
-hr@instantly.ai
-We apologize for any inconvenience.
+All plans are one-time investments with no recurring fees. Credits never expire.
+
+Starter Plan — Village Level
+Investment: Rs 15,000 (one-time)
+Ad Credits: Rs 1,00,000
+Commission: Rs 85,000
+Coverage: Village level
+Includes: Basic directory listing, top search rankings, unlimited event hosting, premium analytics, 24/7 priority support
+
+Growth Plan — Pincode Level
+Investment: Rs 30,000 (one-time)
+Ad Credits: Rs 2,00,000
+Commission: Rs 1,70,000
+Coverage: Pincode and village level
+Includes: Premium directory listing, top search rankings, unlimited event hosting, premium analytics, 24/7 priority support
+
+Professional Plan — Tehsil Level (Most Popular)
+Investment: Rs 45,000 (one-time)
+Ad Credits: Rs 3,00,000
+Commission: Rs 2,55,000
+Coverage: Tehsil, pincode, and village level
+Includes: Elite directory listing, top search rankings, unlimited event hosting, premium analytics, 24/7 priority support
+
+Business Plan — District Level
+Investment: Rs 60,000 (one-time)
+Ad Credits: Rs 4,00,000
+Commission: Rs 3,40,000
+Coverage: District, tehsil, pincode, and village level
+Includes: VIP directory listing, top search rankings, unlimited event hosting, premium analytics, 24/7 priority support
+
+Enterprise Plan — State Level
+Investment: Rs 75,000 (one-time)
+Ad Credits: Rs 5,00,000
+Commission: Rs 4,25,000
+Coverage: State, division, district, tehsil, pincode, and village level
+Includes: Platinum directory listing, top search rankings, unlimited event hosting, premium analytics, 24/7 priority support
+
+Corporate Plan — India Level
+Investment: Rs 90,000 (one-time)
+Ad Credits: Rs 6,00,000
+Commission: Rs 5,10,000
+Coverage: All India
+Includes: Diamond directory listing, top search rankings, unlimited event hosting, premium analytics, 24/7 priority support
+
+
+FRANCHISE AND PARTNER PROGRAM
+
+Instantlly Cards offers two partnership models for individuals or businesses who want to earn by growing the platform.
+
+City Franchise Partner
+This is the premium partnership model where a partner owns exclusive rights for an entire city. The revenue share is 30 to 40 percent on all transactions within the city. Partners can onboard businesses and users, manage local events and promotions, and access marketing materials and campaigns. A dedicated support team is assigned. Investment ranges from Rs 2 to 5 lakhs depending on the city.
+
+Channel Partner
+This is a lighter model with no territorial restrictions. Partners earn 20 to 25 percent commission on referrals and can work from anywhere in India. Minimal investment is required between Rs 10,000 and Rs 50,000. Comprehensive sales training, marketing support, and materials are provided.
+
+Both programs offer multiple income streams including subscriptions, events, classifieds, and vouchers. Instantlly provides complete training, technical support, marketing assets, and an operational support system for all partners.
+
+
+WHY CHOOSE INSTANTLLY CARDS
+
+Eco-friendly — no paper waste, no reprints, no printing costs
+Cost-effective — one-time investment saves thousands compared to printing cards every year
+Instant sharing — via QR code, link, WhatsApp, or NFC
+Always up to date — change number, address, or details once and it updates everywhere
+Analytics — track who viewed your card and when
+Professional design — templates with photos, videos, social links, and more
+Global reach — share with anyone, anywhere in the world
+Multi-platform — works on Android, iOS, and web browsers
+Social integration — all social media profiles linked in one place
+Direct communication — call and chat buttons built into the card
+Business directory listing for organic discoverability
+Advertising credits included in every plan
+Secure and private with encryption and privacy controls
+
+Comparison with traditional paper cards:
+Traditional cards cost Rs 5,000 to Rs 15,000 per year, require reprinting to update, produce paper waste, cannot be shared globally, have no tracking, show text only, and include no advertising benefits. Instantlly Cards is a one-time cost, updates instantly, is zero waste, shareable worldwide, includes full analytics, supports photos and videos, and comes with Rs 1,00,000 or more in advertising credits.
+
+
+LIMITATIONS TO BE AWARE OF
+
+Requires an internet connection to share or access cards (though cards can be viewed offline once loaded)
+Both sender and recipient need a smartphone or device
+Some older users may need initial help getting started
+In some industries or cultures, physical card exchange is still preferred
+Phone battery issues can prevent instant sharing — a printed QR code backup is recommended
+There is a small learning curve to set up the card initially
+
+
+CONTACT INFORMATION
+
+Email: info@instantlycards.com
+Phone: +91 9867477227
+Location: 100+ Cities, India
+Website: https://instantlly.com
+App: https://play.google.com/store/apps/details?id=com.instantllycards.www.twa
+Twitter: @instantlly
+
+For partnerships and franchise: https://www.instantlly.com/franchise.html
+For enterprise solutions: https://www.instantlly.com/contact.html
+
+
+QUICK STATS
+
+Users: 50,000+
+Rating: 4.8 stars
+Cities: 100+
+Plans: 6 (one-time investment, no subscriptions)
+App: Available on Google Play
+Founded: 2025 (copyright year on site)
