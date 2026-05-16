@@ -189,52 +189,84 @@ function avatarHTML(role) {
 }
 
 function renderMessage(role, text, time) {
-
-
     const isUser = role === 'user';
 
-    const bubbleClasses = isUser
-        ? 'rounded-br-sm bg-gradient-to-br from-sky-500 to-blue-600 text-white'
-        : 'rounded-bl-sm border border-sky-100 bg-white text-slate-800';
+    const wrapper = document.createElement('div');
 
-    const el = document.createElement('div');
-
-    el.className = `flex items-end gap-2 mb-4 ${isUser ? 'justify-end' : 'justify-start'}`;
-
-    el.innerHTML = `
-
-        ${!isUser ? avatarHTML('bot') : ''}
-
-        <div class="flex flex-col ${isUser ? 'items-end' : 'items-start'}">
-
-            <div class="
-                inline-block
-                max-w-[320px]
-                sm:max-w-[450px]
-                break-words
-                whitespace-pre-wrap
-                rounded-2xl
-                px-4
-                py-3
-                text-sm
-                leading-relaxed
-                shadow-sm
-                ${bubbleClasses}
-            ">
-                ${escapeHtml(text)}
-            </div>
-
-            <span class="mt-1 px-1 text-[10px] text-slate-400">
-                ${time}
-            </span>
-
-        </div>
-
-        ${isUser ? avatarHTML('user') : ''}
-
+    wrapper.className = `
+        flex
+        ${isUser ? 'justify-end' : 'justify-start'}
+        mb-5
     `;
 
-    chatBox.appendChild(el);
+    wrapper.innerHTML = `
+
+        <div class="
+            flex
+            items-end
+            gap-2
+            ${isUser ? 'flex-row-reverse' : ''}
+        ">
+
+            <!-- Avatar -->
+            <div class="
+                flex
+                h-9
+                w-9
+                flex-shrink-0
+                items-center
+                justify-center
+                rounded-full
+                ${isUser
+                    ? 'bg-slate-800 text-white'
+                    : 'bg-gradient-to-br from-sky-400 to-blue-600 text-white'}
+                text-sm
+                font-bold
+                shadow-md
+            ">
+                ${isUser ? 'You' : 'AI'}
+            </div>
+
+            <!-- Message -->
+            <div class="
+                flex
+                flex-col
+                ${isUser ? 'items-end' : 'items-start'}
+            ">
+
+                <div class="
+                    max-w-[280px]
+                    sm:max-w-[420px]
+                    break-words
+                    whitespace-pre-wrap
+                    rounded-2xl
+                    px-4
+                    py-3
+                    text-sm
+                    leading-relaxed
+                    shadow-sm
+                    ${isUser
+                        ? 'rounded-br-sm bg-gradient-to-br from-sky-500 to-blue-600 text-white'
+                        : 'rounded-bl-sm border border-sky-100 bg-white text-slate-800'}
+                ">
+                    ${escapeHtml(text)}
+                </div>
+
+                <span class="
+                    mt-1
+                    px-1
+                    text-[10px]
+                    text-slate-400
+                ">
+                    ${time}
+                </span>
+
+            </div>
+
+        </div>
+    `;
+
+    chatBox.appendChild(wrapper);
 
     scrollToBottom();
 }
