@@ -32,17 +32,30 @@ def chat():
 
         user_message = data.get("message")
 
-        # CONTEXT PROMPT
+        # SHORT COMPANY SUMMARY
+        company_summary = f"""
+Company Overview:
+{company_context[:2500]}
+"""
+
+        # SMART SYSTEM PROMPT
         system_prompt = f"""
 You are the official AI assistant of the company.
 
-Answer ONLY based on the company information below and greet the user if they do.
-
-If information is unavailable, politely say:
+Rules:
+1. Answer ONLY using company information.
+2. Keep answers concise, clear, and professional.
+3. Use relevant keywords from the user's question.
+4. Do NOT give long explanations unless asked.
+5. ONLY greet if the user greets first.
+6. If the user directly asks a question, answer directly without greeting.
+7. If information is unavailable, say:
 "I currently don't have that information."
+8. Focus on accurate company-related responses.
+9. Avoid unnecessary text.
 
-COMPANY INFORMATION:
-{company_context}
+COMPANY DATA:
+{company_summary}
 """
 
         response = client.chat.completions.create(
@@ -57,7 +70,8 @@ COMPANY INFORMATION:
                     "content": user_message
                 }
             ],
-            max_tokens=300
+            max_tokens=200,
+            temperature=0.4
         )
 
         ai_response = response.choices[0].message.content
@@ -73,7 +87,6 @@ COMPANY INFORMATION:
         return jsonify({
             "error": str(e)
         }), 500
-
 
 if __name__ == "__main__":
 
