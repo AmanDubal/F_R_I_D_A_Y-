@@ -1,4 +1,5 @@
 async function sendMessage() {
+
     const input = document.getElementById("user-input");
     const chatBox = document.getElementById("chat-box");
 
@@ -6,6 +7,7 @@ async function sendMessage() {
 
     if (!message) return;
 
+    // USER MESSAGE
     chatBox.innerHTML += `
         <div class="message user">
             ${message}
@@ -15,6 +17,7 @@ async function sendMessage() {
     input.value = "";
 
     try {
+
         const response = await fetch("/chat", {
             method: "POST",
             headers: {
@@ -27,15 +30,48 @@ async function sendMessage() {
 
         const data = await response.json();
 
-        chatBox.innerHTML += `
-            <div class="message bot">
-                ${data.response}
-            </div>
-        `;
+        console.log(data);
+
+        // AI RESPONSE
+        if (data.response) {
+
+            chatBox.innerHTML += `
+                <div class="message bot">
+                    ${data.response}
+                </div>
+            `;
+
+        }
+
+        // ERROR RESPONSE
+        else if (data.error) {
+
+            chatBox.innerHTML += `
+                <div class="message bot">
+                    ERROR: ${data.error}
+                </div>
+            `;
+        }
+
+        else {
+
+            chatBox.innerHTML += `
+                <div class="message bot">
+                    Unknown server response
+                </div>
+            `;
+        }
 
         chatBox.scrollTop = chatBox.scrollHeight;
 
     } catch (error) {
+
         console.error(error);
+
+        chatBox.innerHTML += `
+            <div class="message bot">
+                Failed to connect to backend
+            </div>
+        `;
     }
 }
