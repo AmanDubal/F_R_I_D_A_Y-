@@ -137,168 +137,217 @@
   </div>
 
 <script>
-  const COMPANY = "Nimbus";
+<script>
 
-  // Knowledge base for local fallback
-  const KB = [
+const chatBox = document.getElementById('chatBox');
+const userInput = document.getElementById('userInput');
+const chatForm = document.getElementById('chatForm');
+const sendBtn = document.getElementById('sendBtn');
+const newChatBtn = document.getElementById('newChatBtn');
 
-    <script>
-    
-    const chatBox = document.getElementById("chatBox");
-    const chatForm = document.getElementById("chatForm");
-    const userInput = document.getElementById("userInput");
-    
-    document.getElementById("year").textContent = new Date().getFullYear();
-    
-    // WELCOME MESSAGE
-    addBotMessage("Ask anything about the company.");
-    
-    chatForm.addEventListener("submit", async (e) => {
-    
-        e.preventDefault();
-    
-        const message = userInput.value.trim();
-    
-        if (!message) return;
-    
-        // USER MESSAGE
-        addUserMessage(message);
-    
-        userInput.value = "";
-    
-        // TYPING
-        const typingId = showTyping();
-    
-        try {
-    
-            const response = await fetch("/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    message: message
-                })
-            });
-    
-            const data = await response.json();
-    
-            removeTyping(typingId);
-    
-            if (data.response) {
-    
-                addBotMessage(data.response);
-    
-            } else {
-    
-                addBotMessage("ERROR: " + data.error);
-            }
-    
-        } catch (error) {
-    
-            removeTyping(typingId);
-    
-            addBotMessage("Failed to connect to server.");
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function formatTime(d) {
+    return d.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
+
+function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, c => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+    }[c]));
+}
+
+function scrollToBottom() {
+    chatBox.scrollTo({
+        top: chatBox.scrollHeight,
+        behavior: 'smooth'
+    });
+}
+
+function avatarHTML(role) {
+
+    if(role === 'user') {
+
+        return `
+        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">
+            You
+        </div>
+        `;
+    }
+
+    return `
+    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-blue-600 text-white">
+        AI
+    </div>
+    `;
+}
+
+function renderMessage(role, text, time) {
+
+    const isUser = role === 'user';
+
+    const bubbleClasses = isUser
+        ? 'rounded-br-sm bg-gradient-to-br from-sky-500 to-blue-600 text-white'
+        : 'rounded-bl-sm border border-sky-100 bg-white text-slate-800';
+
+    const el = document.createElement('div');
+
+    el.className = `flex items-end gap-2 mb-4 ${isUser ? 'flex-row-reverse' : ''}`;
+
+    el.innerHTML = `
+        ${avatarHTML(role)}
+
+        <div class="max-w-[78%]">
+
+            <div class="chat-text rounded-2xl px-4 py-3 text-sm shadow-sm ${bubbleClasses}">
+                ${escapeHtml(text)}
+            </div>
+
+            <span class="mt-1 block px-1 text-[10px] text-slate-400">
+                ${time}
+            </span>
+
+        </div>
+    `;
+
+    chatBox.appendChild(el);
+
+    scrollToBottom();
+}
+
+function showTyping() {
+
+    const el = document.createElement('div');
+
+    el.id = 'typingIndicator';
+
+    el.className = 'flex items-end gap-2 mb-4';
+
+    el.innerHTML = `
+
+        ${avatarHTML('bot')}
+
+        <div class="flex items-center gap-1.5 rounded-2xl rounded-bl-sm border border-sky-100 bg-white px-4 py-3 shadow-sm">
+
+            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
+
+            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
+
+            <span class="typing-dot block h-2 w-2 rounded-full bg-sky-400"></span>
+
+        </div>
+    `;
+
+    chatBox.appendChild(el);
+
+    scrollToBottom();
+}
+
+function hideTyping() {
+
+    const el = document.getElementById('typingIndicator');
+
+    if(el) el.remove();
+}
+
+async function send(text) {
+
+    const trimmed = text.trim();
+
+    if(!trimmed) return;
+
+    renderMessage('user', trimmed, formatTime(new Date()));
+
+    userInput.value = '';
+
+    showTyping();
+
+    try {
+
+        const response = await fetch('/chat', {
+
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify({
+                message: trimmed
+            })
+        });
+
+        const data = await response.json();
+
+        hideTyping();
+
+        if(data.response) {
+
+            renderMessage(
+                'bot',
+                data.response,
+                formatTime(new Date())
+            );
+
+        } else {
+
+            renderMessage(
+                'bot',
+                'ERROR: ' + data.error,
+                formatTime(new Date())
+            );
         }
-    
-    });
-    
-    
-    // USER MESSAGE
-    function addUserMessage(text) {
-    
-        const div = document.createElement("div");
-    
-        div.className = "flex justify-end animate-fade-in-up";
-    
-        div.innerHTML = `
-            <div class="max-w-[80%] rounded-2xl rounded-br-md bg-gradient-to-br from-sky-500 to-blue-600 px-4 py-3 text-sm text-white shadow-lg shadow-sky-200/50 chat-text">
-                ${text}
-            </div>
-        `;
-    
-        chatBox.appendChild(div);
-    
-        scrollBottom();
-    }
-    
-    
-    // BOT MESSAGE
-    function addBotMessage(text) {
-    
-        const div = document.createElement("div");
-    
-        div.className = "flex justify-start animate-fade-in-up";
-    
-        div.innerHTML = `
-            <div class="max-w-[80%] rounded-2xl rounded-bl-md bg-white px-4 py-3 text-sm text-slate-700 shadow-md border border-sky-100 chat-text">
-                ${text}
-            </div>
-        `;
-    
-        chatBox.appendChild(div);
-    
-        scrollBottom();
-    }
-    
-    
-    // TYPING INDICATOR
-    function showTyping() {
-    
-        const id = Date.now();
-    
-        const div = document.createElement("div");
-    
-        div.id = "typing-" + id;
-    
-        div.className = "flex justify-start animate-fade-in-up";
-    
-        div.innerHTML = `
-            <div class="rounded-2xl rounded-bl-md bg-white px-4 py-3 shadow-md border border-sky-100">
-                <div class="flex gap-1">
-                    <span class="typing-dot h-2 w-2 rounded-full bg-sky-400"></span>
-                    <span class="typing-dot h-2 w-2 rounded-full bg-sky-400"></span>
-                    <span class="typing-dot h-2 w-2 rounded-full bg-sky-400"></span>
-                </div>
-            </div>
-        `;
-    
-        chatBox.appendChild(div);
-    
-        scrollBottom();
-    
-        return id;
-    }
-    
-    
-    // REMOVE TYPING
-    function removeTyping(id) {
-    
-        const typing = document.getElementById("typing-" + id);
-    
-        if (typing) typing.remove();
-    }
-    
-    
-    // AUTO SCROLL
-    function scrollBottom() {
-    
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-    
-    
-    // CLEAR CHAT
-    document.getElementById("newChatBtn").addEventListener("click", () => {
-    
-        chatBox.innerHTML = "";
-    
-        addBotMessage("New chat started.");
-    
-    });
-    
-    </script>
 
-  ];
+    } catch(error) {
+
+        hideTyping();
+
+        renderMessage(
+            'bot',
+            'Failed to connect to server.',
+            formatTime(new Date())
+        );
+    }
+}
+
+
+// FORM SUBMIT
+chatForm.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
+    send(userInput.value);
+});
+
+
+// CLEAR CHAT
+newChatBtn.addEventListener('click', () => {
+
+    chatBox.innerHTML = '';
+
+    renderMessage(
+        'bot',
+        'New conversation started.',
+        formatTime(new Date())
+    );
+});
+
+
+// INITIAL MESSAGE
+renderMessage(
+    'bot',
+    'Ask anything about the company.',
+    formatTime(new Date())
+);
+
+</script>
 
   const SUGGESTIONS = [
     "What does your company do?",
