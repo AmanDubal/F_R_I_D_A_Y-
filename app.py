@@ -53,6 +53,7 @@ Rules:
 "I currently don't have that information."
 8. Focus on accurate company-related responses.
 9. Avoid unnecessary text.
+10.Give the answer in 5 lines or less if the user ask in short or summarize the answer.
 
 COMPANY DATA:
 {company_summary}
