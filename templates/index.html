@@ -1,24 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenRouter AI Chat</title>
-    <link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Company AI Assistant</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    background:#0f172a;
+    font-family:Arial;
+    color:white;
+}
+
+.chat-container{
+    width:90%;
+    max-width:800px;
+    margin:30px auto;
+    background:#1e293b;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+    color:#38bdf8;
+}
+
+#chat-box{
+    height:500px;
+    overflow-y:auto;
+    background:#0f172a;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:20px;
+}
+
+.message{
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:12px;
+    max-width:80%;
+    word-wrap:break-word;
+}
+
+.user{
+    background:#2563eb;
+    margin-left:auto;
+    text-align:right;
+}
+
+.bot{
+    background:#334155;
+}
+
+.input-area{
+    display:flex;
+    gap:10px;
+}
+
+input{
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    font-size:16px;
+}
+
+button{
+    padding:14px 20px;
+    border:none;
+    border-radius:12px;
+    background:#38bdf8;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#0ea5e9;
+}
+
+</style>
 </head>
 <body>
 
-    <div class="chat-container">
-        <h1>AI Chatbot</h1>
+<div class="chat-container">
 
-        <div id="chat-box"></div>
+    <h1>Company AI Assistant</h1>
 
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Type your message...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
+    <div id="chat-box"></div>
+
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="Ask about the company...">
+        <button onclick="sendMessage()">Send</button>
     </div>
 
-    <script src="/static/script.js"></script>
+</div>
+
+<script>
+
+async function sendMessage(){
+
+    const input = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
+
+    const message = input.value;
+
+    if(!message) return;
+
+    // USER MESSAGE
+    chatBox.innerHTML += `
+        <div class="message user">
+            ${message}
+        </div>
+    `;
+
+    input.value = "";
+
+    try{
+
+        const response = await fetch("/chat",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                message:message
+            })
+        });
+
+        const data = await response.json();
+
+        if(data.response){
+
+            chatBox.innerHTML += `
+                <div class="message bot">
+                    ${data.response}
+                </div>
+            `;
+
+        }else{
+
+            chatBox.innerHTML += `
+                <div class="message bot">
+                    ERROR: ${data.error}
+                </div>
+            `;
+        }
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+    }catch(error){
+
+        chatBox.innerHTML += `
+            <div class="message bot">
+                Failed to connect to backend
+            </div>
+        `;
+    }
+}
+
+</script>
+
 </body>
 </html>
