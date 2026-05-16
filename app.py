@@ -1,65 +1,47 @@
-import os
-print("==> Starting imports...")
-
 from flask import Flask, render_template, request, jsonify
-print("==> Flask OK")
-
 from flask_cors import CORS
-print("==> CORS OK")
-
 from openai import OpenAI
-print("==> OpenAI OK")
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key=API_KEY,
+    api_key=os.getenv("OPENROUTER_API_KEY")
 )
 
-MODEL = "gpt-4-turbo"
-
-print("==> App initialized OK")
-
-
-# ── Routes ─────────────────────────────────────────────────────────────────
-@app.route('/')
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")
 
-
-@app.route('/chat', methods=['POST'])
+@app.route("/chat", methods=["POST"])
 def chat():
     try:
         data = request.get_json()
-        print("DATA :", data)
-
-        user_message = data.get('message', '')
-        print("USER :", user_message)
-
-        if not user_message:
-            return jsonify({"response": "Please send a message."})
+        user_message = data.get("message")
 
         response = client.chat.completions.create(
-            model=MODEL,
+            model="openai/gpt-4o-mini",
             messages=[
                 {"role": "user", "content": user_message}
             ],
-            max_tokens=512
+            max_tokens=300
         )
 
         ai_response = response.choices[0].message.content
-        print("AI :", ai_response)
 
-        return jsonify({"response": ai_response})
+        return jsonify({
+            "response": ai_response
+        })
 
     except Exception as e:
-        print("ERROR :", e)
-        return jsonify({"response": f"Server Error : {e}"})
+        return jsonify({
+            "error": str(e)
+        }), 500
 
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=False)
+if __name__ == "__main__":
+    app.run(debug=True)
