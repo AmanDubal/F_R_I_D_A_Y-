@@ -36,7 +36,7 @@ def chat():
         system_prompt = f"""
 You are the official AI assistant of the company.
 
-Answer ONLY based on the company information below.
+Answer ONLY based on the company information below and greet the user if they do.
 
 If information is unavailable, politely say:
 "I currently don't have that information."
