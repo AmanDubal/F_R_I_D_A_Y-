@@ -1,18 +1,27 @@
+import os
+print("==> Starting imports...")
+
 from flask import Flask, render_template, request, jsonify
+print("==> Flask OK")
+
 from flask_cors import CORS
+print("==> CORS OK")
+
 from openai import OpenAI
+print("==> OpenAI OK")
 
 app = Flask(__name__)
 CORS(app)
 
-# ── OpenRouter config ──────────────────────────────────────────────────────
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=API_KEY,
 )
 
-MODEL = "gpt-4-turbo"  # change to any OpenRouter supported model
+MODEL = "gpt-4-turbo"
+
+print("==> App initialized OK")
 
 
 # ── Routes ─────────────────────────────────────────────────────────────────
@@ -52,4 +61,5 @@ def chat():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
